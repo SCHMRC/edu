@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <app-form-teacher (resetOut)="handleReset($event)" (dataOut)="handleForm($event)"></app-form-teacher>
+  </div>
+  <div class="row">
+    <button mat-button (click)="onSubmit()">Send</button>
+  </div>
+  <div class="row">
+    <ngx-dropzone (change)="onChange($event)">
+      <ngx-dropzone-label>
+        Export from exel file .txt (tsv) and Drop it:
+        <div>This is an example of a file structure</div>
+        <div>
+          <table style="border: solid 1px whitesmoke;">
+            <thead>
+              <th style="border: solid 1px whitesmoke;">id</th>
+              <th style="border: solid 1px whitesmoke;">surname</th>
+              <th style="border: solid 1px whitesmoke;">matter</th>
+              <th style="border: solid 1px whitesmoke;">PRIMA</th>
+              <th style="border: solid 1px whitesmoke;">SECONDA</th>
+              <th style="border: solid 1px whitesmoke;">TERZA</th>
+
+            </thead>
+            <tbody>
+              <tr style="border: solid 1px whitesmoke;">
+                <td>A001</td>
+                <td>Rossi</td>
+                <td>MATEMATICA</td>
+                <td>A</td>
+                <td></td>
+                <td>A-B</td>
+              </tr>
+              <tr style="border: solid 1px whitesmoke;">
+                <td>A002</td>
+                <td>Bianchi</td>
+                <td>ITALIANO-STORIA</td>
+                <td></td>
+                <td>A-B-E</td>
+                <td></td>
+              </tr>
+              <tr style="border: solid 1px whitesmoke;">
+                <td>A002</td>
+                <td>Verdi</td>
+                <td>RELIGIONE</td>
+                <td>A-B-C-D-E</td>
+                <td>A-B-C-D-E</td>
+                <td>A-B-C-D</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </ngx-dropzone-label>
+      <div *ngIf="files">
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </div>
+    </ngx-dropzone>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div class="row mt-5" style="background-color: whitesmoke; height: 200px;">
+    <app-preview [dataIn]="teacher" (dataOut)="teacher"></app-preview>
+  </div>
+
+</div>

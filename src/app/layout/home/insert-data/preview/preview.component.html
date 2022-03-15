@@ -1,0 +1,16 @@
+<mat-card *ngIf="dataIn.length>0" style="height: 180px; margin-top: 10px;">
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>Preview</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-chip-list>
+      <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport">
+        <mat-chip *ngFor="let teacher of dataIn" (removed)="remove(teacher)" removable="true" >{{teacher.surname}} <mat-icon matChipRemove>cancel</mat-icon></mat-chip>
+      </cdk-virtual-scroll-viewport>
+
+    </mat-chip-list>
+  </mat-card-content>
+
+</mat-card>
+
