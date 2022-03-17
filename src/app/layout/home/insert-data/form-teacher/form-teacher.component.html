@@ -17,7 +17,7 @@
     </mat-form-field>
     <mat-form-field appearance="legacy" style="margin-right: 10px;">
       <mat-label>matter</mat-label>
-      <mat-select formControlName="matter" name="food" (selectionChange)="initStream()">
+      <mat-select formControlName="matterTemp" name="food" (selectionChange)="addMatter($event)">
         <mat-option *ngFor="let matter of LABELMATTER" [value]="matter.value">
           {{matter.viewValue}}
         </mat-option>

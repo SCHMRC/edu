@@ -3,7 +3,7 @@
     <app-form-teacher (resetOut)="handleReset($event)" (dataOut)="handleForm($event)"></app-form-teacher>
   </div>
   <div class="row">
-    <button mat-button (click)="onSubmit()">Send</button>
+    <button mat-button (click)="onSubmit()" [disabled]="flag">Send</button>
   </div>
   <div class="row">
     <ngx-dropzone (change)="onChange($event)">
