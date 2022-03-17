@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LABEL_MATTER, Select } from './../../../../../assets/label/label_matter';
 import { NgModel } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
@@ -23,7 +23,8 @@ export class FormTeacherComponent implements OnInit {
     this.form = this.fb.group({
       name: ['',[Validators.required]],
       surname: [null,[Validators.required]],
-      matter: [null,[Validators.required]],
+      matterTemp: [null,[Validators.required]],
+      matters: [null,[Validators.required]],
       adress: ['',[]],
       phone: [null,[Validators.pattern('[0-9]*'),Validators.minLength(8)]],
       email: [null,[Validators.email, Validators.required]],
@@ -36,8 +37,6 @@ export class FormTeacherComponent implements OnInit {
   initFormControl(){
     let name = this.form.get('name')
     let surname = this.form.get('surname')
-    let matter = this.form.get('matter')
-    matter.valueChanges.subscribe(data => {this.tempMatter = []; this.tempMatter.push(data); this.matter.next(this.tempMatter)})
     let adress = this.form.get('adress')
     let phone = this.form.get('phone')
     let email = this.form.get('email')
@@ -46,17 +45,19 @@ export class FormTeacherComponent implements OnInit {
   }
 
   initStream(){
-    console.log(this.matter.getValue())
-
-
-      this.form.controls['matter'].setValue(this.matter.getValue())
-
-
-    console.log(this.form.value)
-    //this.dataOut.emit(this.form);
+    this.dataOut.emit(this.form);
   }
 
-  addMatter(){
+  addMatter(evento){
+    this.tempMatter = [];
+    this.tempMatter.push(evento.value);
+    this.form.addControl('matterTemp',new FormControl('', Validators.required))
+    this.form.controls['matterTemp'].setValue(evento.value)
+    this.form.controls['matters'].setValue(this.tempMatter)
+    console.log(this.form.value)
+
+
+    //matter.valueChanges.subscribe(data => {this.tempMatter = []; this.tempMatter.push(data); this.matter.next(this.tempMatter)}).unsubscribe()
   }
 
   clear(){

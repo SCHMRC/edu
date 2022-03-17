@@ -25,6 +25,7 @@ export class InsertDataComponent implements OnInit, OnDestroy {
   subcription: Subscription;
   files: File[] = [];
   formTeacher: FormGroup
+  flag: boolean = true
 
 
   @ViewChild(PreviewComponent) child!: PreviewComponent;
@@ -261,10 +262,12 @@ export class InsertDataComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(){
-    this.formTeacher?.valueChanges.subscribe(form =>{
+    this.formTeacher.removeControl('matterTemp')
+    this.teacher.push(this.formTeacher.value)
+    /* this.formTeacher?.valueChanges.subscribe(form =>{
       this.teacher.push(form)
       console.log(form)
-    })
+    }) */
 
     this.subcription = this.http.insertTeachs(this.teacher).subscribe(
       {
@@ -275,11 +278,17 @@ export class InsertDataComponent implements OnInit, OnDestroy {
   }
 
   handleForm(event: FormGroup){
-    console.log(event.value)
-      /* let sub=event?.valueChanges.subscribe(form =>{
-        if(event.status == 'VALID'){this.teacher.push(form)}
+    let form = event.value
+    if(event.valid){
+      this.formTeacher = event
+    }
+     (event.status == 'VALID')? this.flag = false : this.flag = true;
 
-        console.log(this.teacher.length)
+
+    /* let sub=event?.valueChanges.subscribe(form =>{
+        if(event.status == 'VALID'){
+          this.teacher.push(form)
+        console.log(this.teacher)}
       }) */
 
   }
