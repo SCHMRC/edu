@@ -10,6 +10,7 @@ import { Teacher } from 'src/app/model/teacher';
 export class PreviewComponent implements OnInit {
   @Input() dataIn: Teacher[];
   @Output() dataOut = new EventEmitter();
+  @Output() previewOut = new EventEmitter();
 
   constructor() { }
 
@@ -17,15 +18,20 @@ export class PreviewComponent implements OnInit {
   }
   removeAll(){
     this.dataIn = [];
-    this.dataOut.emit(this.dataIn)
+    this.dataOut.emit({data: this.dataIn, event: 'preview'})
+    this.previewOut.emit(true)
   }
 
   remove(teacher: Teacher){
    const index =  this.dataIn.indexOf(teacher)
-   if (index >= 0) {
-    this.dataIn.splice(index, 1);
-  }
-  this.dataOut.emit(this.dataIn)
+   console.log(index)
+   if(this.dataIn.length != 0){
+    if (index >= 0) {
+      this.dataIn.splice(index, 1);
+    }
+   }
+  this.dataOut.emit({data: this.dataIn, event: 'preview'})
+  this.previewOut.emit(true)
 
   }
 

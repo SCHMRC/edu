@@ -54,9 +54,6 @@ export class FormTeacherComponent implements OnInit {
     this.form.addControl('matterTemp',new FormControl('', Validators.required))
     this.form.controls['matterTemp'].setValue(evento.value)
     this.form.controls['matters'].setValue(this.tempMatter)
-    console.log(this.form.value)
-
-
     //matter.valueChanges.subscribe(data => {this.tempMatter = []; this.tempMatter.push(data); this.matter.next(this.tempMatter)}).unsubscribe()
   }
 

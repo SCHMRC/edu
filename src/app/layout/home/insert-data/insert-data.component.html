@@ -51,17 +51,15 @@
         </div>
 
       </ngx-dropzone-label>
-      <div *ngIf="files">
-        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)" (cdkObserveContent)="handleContainer()">
           <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
         </ngx-dropzone-preview>
-      </div>
     </ngx-dropzone>
   </div>
 
   <mat-divider></mat-divider>
   <div class="row mt-5" style="background-color: whitesmoke; height: 200px;">
-    <app-preview [dataIn]="teacher" (dataOut)="teacher"></app-preview>
+    <app-preview [dataIn]="teacher" (dataOut)="handleData($event)" (previewOut)="previewFlag"></app-preview>
   </div>
 
 </div>
