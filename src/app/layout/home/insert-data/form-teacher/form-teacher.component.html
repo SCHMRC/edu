@@ -1,7 +1,15 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Insert teacher</mat-card-title>
-  </mat-card-header>
+<div class="row">
+  <div class="col">
+    <h1 mat-dialog-title>Insert teacher</h1>
+  </div>
+  <div class="col" align="end">
+    <button mat-icon-button  mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div mat-dialog-content>
   <form [formGroup]="form">
     <mat-form-field appearance="legacy" style="margin-right: 10px;">
       <mat-label>name</mat-label>
@@ -17,7 +25,7 @@
     </mat-form-field>
     <mat-form-field appearance="legacy" style="margin-right: 10px;">
       <mat-label>matter</mat-label>
-      <mat-select formControlName="matter" name="food" (selectionChange)="initStream()">
+      <mat-select formControlName="matterTemp" name="food" (selectionChange)="addMatter($event)">
         <mat-option *ngFor="let matter of LABELMATTER" [value]="matter.value">
           {{matter.viewValue}}
         </mat-option>
@@ -47,9 +55,11 @@
     </mat-form-field>
 
   </form>
-  <mat-card-footer align="end">
-    <button matTooltip="clear all field" class="mb-3" style="margin-right: 10px; background-color: #d5e6da;"  mat-raised-button (click)="clear()">Clear</button>
-  </mat-card-footer>
 
-</mat-card>
+
+</div>
+<div mat-dialog-actions align="end">
+  <button matTooltip="clear all field" class="mb-3"  mat-raised-button (click)="clear()">{{BUTTON.LABEL_BUTTON.CLEAR}}</button>
+  <button mat-button class="mb-3" style="margin-right: 10px; background-color: #d5e6da;" (click)="onSubmit()" mat-dialog-close [disabled]="form.invalid">{{BUTTON.LABEL_BUTTON.SEND}}</button>
+</div>
 

@@ -10,6 +10,7 @@ import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { HomeModule } from './layout/home/home.module'
 import { MaterialModule } from './material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,12 +18,13 @@ import { MaterialModule } from './material/material.module';
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-
+    FormsModule,
+    ReactiveFormsModule,
     BootstrapModule,
     NgxDropzoneModule,
     MaterialModule,

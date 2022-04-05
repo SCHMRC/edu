@@ -4,7 +4,7 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-  width: 300px;
+  width: 600px;
 }
 
 button{
@@ -18,4 +18,7 @@ button{
 .example-header-image {
   background-image: url('./../../../assets/icon/teacher.png');
   background-size: cover;
+}
+mat-form-field{
+  width: 100%;
 }

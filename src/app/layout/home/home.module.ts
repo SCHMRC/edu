@@ -9,6 +9,8 @@ import { MaterialModule } from './../../material/material.module';
 import { SharedModule } from './../../shared/shared.module';
 import { PreviewComponent } from './insert-data/preview/preview.component';
 import { FormTeacherComponent } from './insert-data/form-teacher/form-teacher.component';
+import { TimeTableComponent } from './time-table/time-table.component';
+
 
 
 
@@ -16,7 +18,8 @@ import { FormTeacherComponent } from './insert-data/form-teacher/form-teacher.co
   declarations: [
     ...COMPONENTS,
     PreviewComponent,
-    FormTeacherComponent
+    FormTeacherComponent,
+    TimeTableComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,34 @@
-<p>login works!</p>
+<div id="login">
+    <mat-card style="padding: 20px; background-color: whitesmoke;">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title><h1 class="display-6">{{LABEL_FORM.LABEL_FORMS.titleForm.login}}</h1></mat-card-title>
+      </mat-card-header>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-card-content>
+
+        <div class="row" style="margin-bottom: 10px;">
+          <mat-form-field appearance="outline">
+            <mat-label>{{LABEL_FORM.LABEL_FORMS.fieldForm.email}}</mat-label>
+            <input type="email"  formControlName="email" matInput>
+            <mat-error *ngIf="form.get('email').hasError('email')">{{LABEL_ERROR.LABEL_ERROR.emailFormatError}}</mat-error>
+            <mat-error *ngIf="form.get('email').hasError('required')">{{LABEL_ERROR.LABEL_ERROR.emailRequired}}</mat-error>
+          </mat-form-field>
+
+        </div>
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>{{LABEL_FORM.LABEL_FORMS.fieldForm.password}}</mat-label>
+            <input type="password"  formControlName="password" matInput>
+            <mat-error *ngIf="form.get('password').hasError('required')">{{LABEL_ERROR.LABEL_ERROR.passwordRequired}}</mat-error>
+          </mat-form-field>
+         </div>
+
+      </mat-card-content>
+      <mat-card-footer align="end">
+        <button mat-button type="button" (click)="onSignin()">{{LABEL_BUTTON.LABEL_BUTTON.SIGNIN}}</button>
+        <button mat-button type="submit">{{LABEL_BUTTON.LABEL_BUTTON.LOGIN}}</button>
+      </mat-card-footer>
+    </form>
+    </mat-card>

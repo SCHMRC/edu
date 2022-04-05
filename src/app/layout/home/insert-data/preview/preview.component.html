@@ -6,7 +6,7 @@
   <mat-card-content>
     <mat-chip-list>
       <cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport">
-        <mat-chip *ngFor="let teacher of dataIn" (removed)="remove(teacher)" removable="true" >{{teacher.surname}} <mat-icon matChipRemove>cancel</mat-icon></mat-chip>
+        <mat-chip *ngFor="let teacher of dataIn" (removed)="remove(teacher)" removable="true"  matTooltip="materia: {{teacher.matters[0].matter}}" >{{teacher.surname}} <mat-icon matChipRemove>cancel</mat-icon></mat-chip>
       </cdk-virtual-scroll-viewport>
 
     </mat-chip-list>

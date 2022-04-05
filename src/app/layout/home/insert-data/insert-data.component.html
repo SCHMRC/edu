@@ -1,12 +1,12 @@
 <div class="container">
+
+
   <div class="row">
-    <app-form-teacher (resetOut)="handleReset($event)" (dataOut)="handleForm($event)"></app-form-teacher>
+    <!-- <app-form-teacher (resetOut)="handleReset($event)" (dataOut)="handleForm($event)"></app-form-teacher> -->
+
   </div>
   <div class="row">
-    <button mat-button (click)="onSubmit()">Send</button>
-  </div>
-  <div class="row">
-    <ngx-dropzone (change)="onChange($event)">
+    <ngx-dropzone (change)="onChange($event)" accept="text/plain">
       <ngx-dropzone-label>
         Export from exel file .txt (tsv) and Drop it:
         <div>This is an example of a file structure</div>
@@ -51,17 +51,24 @@
         </div>
 
       </ngx-dropzone-label>
-      <div *ngIf="files">
         <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
           <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
         </ngx-dropzone-preview>
-      </div>
     </ngx-dropzone>
   </div>
 
   <mat-divider></mat-divider>
   <div class="row mt-5" style="background-color: whitesmoke; height: 200px;">
-    <app-preview [dataIn]="teacher" (dataOut)="teacher"></app-preview>
+    <app-preview [dataIn]="teacher" (dataOut)="handleData($event)"></app-preview>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col">
+      <button mat-raised-button color="primary" (click)="openDialog()">{{BUTTON.LABEL_BUTTON.SENGLETEACHER}}</button>
+    </div>
+    <div class="col" align="end">
+      <button mat-button style="background-color: #d5e6da;" (click)="onSubmit()" [disabled]="flag">{{BUTTON.LABEL_BUTTON.SEND}}</button>
+    </div>
   </div>
 
 </div>
