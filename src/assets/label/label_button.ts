@@ -5,6 +5,9 @@ export const LABEL_BUTTON = {
   SUBSCRIBE: 'Subscribe',
   SIGNIN: 'Signin',
   SUBMIT: 'Submit',
-  LOGIN: 'Login'
+  LOGIN: 'Login',
+  CLEAR: 'Clear',
+  SEND: 'Send',
+  SENGLETEACHER: 'Insert single teacher'
 
 }

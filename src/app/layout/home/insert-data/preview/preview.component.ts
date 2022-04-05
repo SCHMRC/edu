@@ -24,7 +24,6 @@ export class PreviewComponent implements OnInit {
 
   remove(teacher: Teacher){
    const index =  this.dataIn.indexOf(teacher)
-   console.log(index)
    if(this.dataIn.length != 0){
     if (index >= 0) {
       this.dataIn.splice(index, 1);
