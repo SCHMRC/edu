@@ -1,55 +1,74 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Insert teacher</mat-card-title>
-  </mat-card-header>
+<div class="row">
+  <div class="col">
+    <h1 mat-dialog-title>Insert teacher</h1>
+  </div>
+  <div class="col" align="end">
+    <button mat-mini-fab  mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div mat-dialog-content>
   <form [formGroup]="form">
-    <mat-form-field appearance="legacy" style="margin-right: 10px;">
-      <mat-label>name</mat-label>
-      <input matInput placeholder="Placeholder" formControlName="name" name="name" (keyup)="initStream()">
-      <mat-icon matSuffix *ngIf="!form.get('name').errors" style="color: green;">sentiment_very_satisfied</mat-icon>
-      <mat-error *ngIf="form.get('name').errors">name required</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="legacy" style="margin-right: 10px;">
-      <mat-label>surname</mat-label>
-      <input matInput placeholder="Placeholder" formControlName="surname" name="surname" (keyup)="initStream()">
-      <mat-icon matSuffix *ngIf="!form.get('surname').errors" style="color: green;">sentiment_very_satisfied</mat-icon>
-      <mat-error *ngIf="form.get('surname').errors">surname required</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="legacy" style="margin-right: 10px;">
-      <mat-label>matter</mat-label>
-      <mat-select formControlName="matterTemp" name="food" (selectionChange)="addMatter($event)">
-        <mat-option *ngFor="let matter of LABELMATTER" [value]="matter.value">
-          {{matter.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="legacy" style="margin-right: 10px;">
-      <mat-label>adress</mat-label>
-      <input matInput placeholder="Placeholder" formControlName="adress" name="adress" (keyup)="initStream()">
-    </mat-form-field>
-    <mat-form-field appearance="legacy" style="margin-right: 10px;">
-      <mat-label>phone</mat-label>
-      <input matInput placeholder="Placeholder" formControlName="phone" name="phone" (keyup)="initStream()">
-      <mat-icon matSuffix *ngIf="(!form.get('phone').errors && !form.get('phone').pristine) || !form.get('phone').errors" style="color: green;">sentiment_very_satisfied</mat-icon>
-      <mat-error *ngIf="form.get('phone').errors">Not valid phone</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="legacy" style="margin-right: 10px;">
-      <mat-label>e-mail</mat-label>
-      <input matInput placeholder="Placeholder" formControlName="email" name="email" (keyup)="initStream()">
-      <mat-icon matSuffix *ngIf="!form.get('email').errors" style="color: green;">sentiment_very_satisfied</mat-icon>
-      <mat-error *ngIf="form.get('email').errors">Not valid email</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="legacy" style="margin-right: 10px;">
-      <mat-label>edu-mail</mat-label>
-      <input matInput placeholder="Placeholder" formControlName="edumail" name="edumail" (keyup)="initStream()">
-      <mat-icon matSuffix *ngIf="!form.get('edumail').errors" style="color: green;">sentiment_very_satisfied</mat-icon>
-      <mat-error *ngIf="form.get('email').errors">Not valid email</mat-error>
-    </mat-form-field>
+    <div class="row">
+      <mat-form-field class="col" appearance="legacy" style="margin-right: 10px;">
+        <mat-label>name</mat-label>
+        <input matInput ="" formControlName="name" name="name" >
+        <mat-icon matSuffix *ngIf="!form.get('name').errors" style="color: green;">sentiment_very_satisfied</mat-icon>
+        <mat-error *ngIf="form.get('name').errors">name required</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col" appearance="legacy" style="margin-right: 10px;">
+        <mat-label>surname</mat-label>
+        <input matInput ="" formControlName="surname" name="surname" >
+        <mat-icon matSuffix *ngIf="!form.get('surname').errors" style="color: green;">sentiment_very_satisfied</mat-icon>
+        <mat-error *ngIf="form.get('surname').errors">surname required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col" appearance="legacy" style="margin-right: 10px;">
+        <mat-label>matter</mat-label>
+        <mat-select formControlName="matterTemp" name="food" (selectionChange)="addMatter($event)">
+          <mat-option *ngFor="let matter of LABELMATTER" [value]="matter.value">
+            {{matter.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="col" appearance="legacy" style="margin-right: 10px;">
+        <mat-label>phone</mat-label>
+        <input matInput ="" formControlName="phone" name="phone" >
+        <mat-icon matSuffix *ngIf="(!form.get('phone').errors && !form.get('phone').pristine) || !form.get('phone').errors" style="color: green;">sentiment_very_satisfied</mat-icon>
+        <mat-error *ngIf="form.get('phone').errors">Not valid phone</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col" appearance="legacy" style="margin-right: 10px;">
+        <mat-label>edu-mail</mat-label>
+        <input matInput ="" formControlName="edumail" name="edumail" >
+        <mat-icon matSuffix *ngIf="!form.get('edumail').errors" style="color: green;">sentiment_very_satisfied</mat-icon>
+        <mat-error *ngIf="form.get('email').errors">Not valid email</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col" appearance="legacy" style="margin-right: 10px;">
+        <mat-label>e-mail</mat-label>
+        <input matInput ="" formControlName="email" name="email" >
+        <mat-icon matSuffix *ngIf="!form.get('email').errors" style="color: green;">sentiment_very_satisfied</mat-icon>
+        <mat-error *ngIf="form.get('email').errors">Not valid email</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col" appearance="legacy" style="margin-right: 10px;">
+        <mat-label>adress</mat-label>
+        <input matInput ="" formControlName="adress" name="adress" >
+      </mat-form-field>
+    </div>
+
 
   </form>
-  <mat-card-footer align="end">
-    <button matTooltip="clear all field" class="mb-3" style="margin-right: 10px; background-color: #d5e6da;"  mat-raised-button (click)="clear()">Clear</button>
-  </mat-card-footer>
 
-</mat-card>
+
+</div>
+<div mat-dialog-actions align="end">
+  <button matTooltip="clear all field" class="mb-3"  mat-raised-button (click)="clear()">{{BUTTON.LABEL_BUTTON.CLEAR}}</button>
+  <button mat-button class="mb-3" style="margin-right: 10px; background-color: #d5e6da;" (click)="onSubmit()" mat-dialog-close [disabled]="form.invalid">{{BUTTON.LABEL_BUTTON.SEND}}</button>
+</div>
 

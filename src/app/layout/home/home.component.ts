@@ -3,6 +3,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import {trigger, state, style, animate, transition} from '@angular/animations';
+import * as LABEL_MENU from 'src/assets/label/label_menu'
 
 export interface Path{
   icon: string,
@@ -19,6 +20,7 @@ export interface Path{
 })
 
 export class HomeComponent implements OnInit {
+  LABEL_MENU =LABEL_MENU
   sidenavWidth = 4;
   temp: BehaviorSubject<number> = new BehaviorSubject(4)
   bool: BehaviorSubject<boolean> = new BehaviorSubject(false)
@@ -45,6 +47,12 @@ export class HomeComponent implements OnInit {
       key: 'Insert/show Class',
       value: 'show-class'
     },
+    {
+      icon: 'functions',
+      description: 'Setting/Generate Time Table',
+      key: 'Time Table',
+      value: 'show-time-table'
+    },
   ];
 
   reason = '';
@@ -53,7 +61,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.bool.subscribe(flag =>{
-      console.log(flag)
       this.flag = flag
     })
 
@@ -61,7 +68,6 @@ export class HomeComponent implements OnInit {
 
 
   close() {
-    console.log('test')
     this.sidenav.close();
   }
   navigateto(param: string){
@@ -114,4 +120,10 @@ export class HomeComponent implements OnInit {
 
     },10)
 	}
+
+  routing(param: string){
+    sessionStorage.clear();
+    this.router.navigate([`${param}`])
+
+  }
 }

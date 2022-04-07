@@ -22,25 +22,25 @@
 	<div class="example-sidenav-content">
     <div>
       <div class="row pt-3 mb-5" style="height: 60px; width: 100%;background-color: whitesmoke;">
-        <div class="col-11">
+        <div class="col-10">
 
         </div>
-        <div class="col-1">
-          <button class="pb-3" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <div class="col-2">
+          <button class="pb-3" mat-icon-button [matMenuTriggerFor]="menu" style="margin-left: 40px;">
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu" xPosition="before">
             <button mat-menu-item>
               <mat-icon>account_circle</mat-icon>
-              <span>Profile</span>
+              <span>{{LABEL_MENU.LABEL_MENU.profile | titlecase}}</span>
             </button>
             <button mat-menu-item>
               <mat-icon>article</mat-icon>
-              <span>Wiki</span>
+              <span>{{LABEL_MENU.LABEL_MENU.wiki| titlecase}}</span>
             </button>
-            <button mat-menu-item>
-              <mat-icon>logout</mat-icon>
-              <span>Logout</span>
+            <button mat-menu-item (click)="routing('login')">
+              <mat-icon>{{LABEL_MENU.LABEL_MENU.logout}}</mat-icon>
+              <span>{{LABEL_MENU.LABEL_MENU.logout | titlecase}}</span>
             </button>
           </mat-menu>
 

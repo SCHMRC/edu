@@ -8,3 +8,12 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.snackbar-success {
+  background: green !important;
+}
+
+.snackbar-error {
+  color: white;
+  background: red !important;
+}

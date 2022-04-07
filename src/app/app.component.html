@@ -1,1 +1,15 @@
 <router-outlet></router-outlet>
+
+<div *ngIf="spinner$ | async">
+  <div class="background"></div>
+  <div class="spinner">
+    <mat-progress-spinner
+    class="example-margin"
+    [color]="'primary'"
+    [mode]="'indeterminate'">
+  </mat-progress-spinner>
+  </div>
+</div>
+
+
+
