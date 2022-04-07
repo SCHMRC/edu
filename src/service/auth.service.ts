@@ -22,7 +22,6 @@ export class AuthService {
   }
 
   signin(user): Observable<any>{
-    console.log(`${this.api}${ROUTE.PATH_ROUTE.SIGNIN_PATH}`)
     return this.http.post<any>(`${this.api}${ROUTE.PATH_ROUTE.SIGNIN_PATH}`,user)
   }
 

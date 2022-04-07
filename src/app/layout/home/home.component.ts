@@ -68,7 +68,6 @@ export class HomeComponent implements OnInit {
 
 
   close() {
-    console.log('test')
     this.sidenav.close();
   }
   navigateto(param: string){

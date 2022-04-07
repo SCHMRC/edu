@@ -5,6 +5,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { FooterComponent } from './footer/footer.component';
 import { ModalComponent } from './modal/modal.component';
 import { MaterialModule } from '../material/material.module';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 
 
@@ -12,7 +13,8 @@ import { MaterialModule } from '../material/material.module';
   declarations: [
     ItemTeacherComponent,
     FooterComponent,
-    ModalComponent
+    ModalComponent,
+    SnackbarComponent
   ],
   imports: [
     MaterialModule,

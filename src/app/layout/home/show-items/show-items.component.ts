@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Teacher } from 'src/app/model/teacher';
 import { HttpService } from 'src/service/http.service';
+import { UtilityService } from 'src/service/utility.service';
 
 interface Section{
   prima: string;
@@ -37,8 +38,11 @@ export class ShowItemsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private service: HttpService,private  router: Router) {
-    this.service.getTeachers().subscribe(data => {
+  constructor(private service: HttpService,private  router: Router, private util: UtilityService) {
+    this.util.showSpinner.next(true)
+    let subscribe = this.service.getTeachers().subscribe(data => {
+      this.util.showSpinner.next(false)
+      subscribe?.unsubscribe()
       this.dataSource = new MatTableDataSource(data);
       this.dataSource$.next(this.dataSource)
     })
@@ -54,15 +58,13 @@ export class ShowItemsComponent implements OnInit, AfterViewInit {
         this.dataSource.sort = this.sort;
       }
     })
-
-
   }
 
   getInfo(expandedElement){
     if(expandedElement){
       this.service.getTeacher(expandedElement.id).subscribe(teach =>{
+        console.log(teach)
           this.teacher = teach;
-          console.log(this.teacher)
           let prima: string[] = []
           let seconda: string[] = []
           let terza: string[] = []
@@ -115,5 +117,4 @@ export class ShowItemsComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 }

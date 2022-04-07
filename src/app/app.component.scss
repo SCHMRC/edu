@@ -1,0 +1,17 @@
+.spinner{
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 46%;
+
+}
+
+.background{
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  opacity: 0.3;
+  background-color: gray;
+}
+

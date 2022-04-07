@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { Classroom, Year } from 'src/app/model/class';
 import { Matter } from 'src/app/model/matter'
 import { Teacher } from 'src/app/model/teacher';
@@ -10,6 +10,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormTeacherComponent } from './form-teacher/form-teacher.component';
 import * as LABEL_BUTTON from 'src/assets/label/label_button'
 import { UtilityService } from 'src/service/utility.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import * as SNACKBAR from 'src/assets/config/snackBar.config'
 
 
 @Component({
@@ -20,9 +23,12 @@ import { UtilityService } from 'src/service/utility.service';
 export class InsertDataComponent implements OnInit, OnDestroy {
   BUTTON = LABEL_BUTTON
   teacher: Teacher[] = []
-  subcription: Subscription;
+  subscription: Subscription[] = [];
   files: File[] = [];
   formTeacher: FormGroup
+  temp: Subscription;
+
+  y: Subscription;
 
   flag: boolean = true
 
@@ -32,27 +38,19 @@ export class InsertDataComponent implements OnInit, OnDestroy {
 
   constructor(
     private util: UtilityService,
+    private _snackBar: MatSnackBar,
+    private router: Router,
     public dialog: MatDialog,
     private http: HttpService)
     {}
 
 
-  ngOnInit(): void {
-    this.util.formModal.subscribe(form => {
-    if (form && form.valid) {
-      this.formTeacher = form
-    }
-    if (this.formTeacher != undefined || this.formTeacher != null) {
-      this.formTeacher.removeControl('matterTemp')
-      let singleTeacher: Teacher[] = [];
-      singleTeacher.push(this.formTeacher.value)
-      this.subcription = this.http.insertTeachs(singleTeacher).subscribe(
-        data => { console.log(data) },
-        error => { console.log(error.error.message) }
-      )
-    }
-    })
-  }
+  ngOnInit(): void {}
+
+  ngDoCheck(){}
+
+  ngAfterContentChecked(){}
+
 
   removeDuplicate(param: object[]): Teacher[] {
     let list: Teacher[] = []
@@ -156,13 +154,17 @@ export class InsertDataComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.subcription = this.http.insertTeachs(this.teacher).subscribe(
-      data => { this.teacher = [] },
-      error => { console.log(error.error.message) }
-    )
+    this.util.showSpinner.next(true)
+    this.subscription.push(this.http.insertTeachs(this.teacher).subscribe(
+      data => { this.teacher = [], this.files = []; this.openSnackBar(data.message, 'Ok!','snackbar-success'); this.util.showSpinner.next(false) },
+      error => { this.openSnackBar(error.error.message, error.status,'snackbar-error'); this.util.showSpinner.next(false) }
+    ))
   }
   openDialog() {
-    this.dialog.open(FormTeacherComponent);
+    this.dialog.open(FormTeacherComponent,{
+      width: '500px',
+      disableClose: true
+    });
   }
 
   handleForm(event: FormGroup) {
@@ -191,12 +193,20 @@ export class InsertDataComponent implements OnInit, OnDestroy {
     this.flag = true;
   }
 
-
-  ngOnDestroy(): void {
-    this.subcription?.unsubscribe()
+  openSnackBar(msg: string, error: string, color: string) {
+    this._snackBar.open(msg,`status ${error}`,{
+      duration: SNACKBAR.snackBarConfig.duration,
+      panelClass: [color],
+      horizontalPosition: SNACKBAR.snackBarConfig.horizontalPosition,
+      verticalPosition: SNACKBAR.snackBarConfig.verticalPosition,
+    });
   }
 
 
-
+  ngOnDestroy(): void {
+    this.subscription.forEach(element => {
+      element?.unsubscribe()
+    });
+  }
 
 }

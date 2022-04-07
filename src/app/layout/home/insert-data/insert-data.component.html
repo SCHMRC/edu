@@ -1,10 +1,5 @@
+
 <div class="container">
-
-
-  <div class="row">
-    <!-- <app-form-teacher (resetOut)="handleReset($event)" (dataOut)="handleForm($event)"></app-form-teacher> -->
-
-  </div>
   <div class="row">
     <ngx-dropzone (change)="onChange($event)" accept="text/plain">
       <ngx-dropzone-label>
@@ -58,7 +53,13 @@
   </div>
 
   <mat-divider></mat-divider>
-  <div class="row mt-5" style="background-color: whitesmoke; height: 200px;">
+  <div class="row mt-5" style="background-color: whitesmoke; height: 400px;">
+    <div *ngIf="teacher.length == 0" class="row text-center">
+      <div class="col display-3 mt-5" style="opacity: 0.1; ">
+        <b>PREVIEW</b>
+      </div>
+
+    </div>
     <app-preview [dataIn]="teacher" (dataOut)="handleData($event)"></app-preview>
   </div>
 
@@ -70,5 +71,5 @@
       <button mat-button style="background-color: #d5e6da;" (click)="onSubmit()" [disabled]="flag">{{BUTTON.LABEL_BUTTON.SEND}}</button>
     </div>
   </div>
-
 </div>
+
