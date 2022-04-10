@@ -1,0 +1,40 @@
+<mat-form-field class="full-width" appearance="fill">
+  <mat-label>Matter</mat-label>
+  <mat-chip-list #chipList aria-label="matters selection">
+    <mat-chip
+      *ngFor="let matters of matterss"
+      (removed)="remove(matters)">
+      <mat-chip-avatar [ngSwitch]="matters">
+        <img *ngSwitchCase="'ITALIANO'" src="./../../../../assets/icon/it_flag.jpeg" width="140%" />
+        <img *ngSwitchCase="'INGLESE'" src="./../../../../assets/icon/en_flag.png" width="140%" />
+        <img *ngSwitchCase="'STORIA'" src="./../../../../assets/icon/his_flag.jpg" width="140%" />
+        <img *ngSwitchCase="'GEOGRAFIA'" src="./../../../../assets/icon/geo_flag.jpg" width="100%" />
+        <img *ngSwitchCase="'MATEMATICA'" src="./../../../../assets/icon/mat_flag.png" width="100%" />
+        <img *ngSwitchCase="'TECNOLOGIA'" src="./../../../../assets/icon/tec_flag.jpg" width="130%" />
+        <img *ngSwitchCase="'FRANCESE'" src="./../../../../assets/icon/fra_flag.jpg" width="130%" />
+        <img *ngSwitchCase="'ARTE'" src="./../../../../assets/icon/art_flag.jpg" width="90%" />
+        <img *ngSwitchCase="'RELIGIONE'" src="./../../../../assets/icon/rel_flag.png" width="140%" />
+        <img *ngSwitchCase="'EdFISICA'" src="./../../../../assets/icon/edfis_flag.gif" width="120%" />
+        <img *ngSwitchCase="'MUSICA'" src="./../../../../assets/icon/mus_flag.png" width="100%" />
+        <img *ngSwitchCase="'APPROFONDIMENTO'" src="./../../../../assets/icon/app_flag.png" width="90%" />
+      </mat-chip-avatar>
+      {{matters}}
+      <button matChipRemove *ngIf="matterss.length > 1">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      [placeholder]="placeholder"
+      #mattersInput
+      [formControl]="mattersCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let matters of filteredmatterss | async" [value]="matters">
+      {{matters}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

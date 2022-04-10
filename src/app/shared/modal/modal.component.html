@@ -1,5 +1,26 @@
-<h1 mat-dialog-title>Dialog with Server</h1>
-<div mat-dialog-content>Code server responce: {{data.msg}}</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+
+
+
+<div class="row">
+  <div class="col">
+    <h1 mat-dialog-title>{{title}}</h1>
+  </div>
+  <div class="col" align="end">
+    <button mat-icon-button style="margin-left: 15px;" class="icon-button-small" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>List of matter</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="matter">
+      <mat-option *ngFor="let m of content" [value]="m.value" [disabled]="m.value == 'None'">
+        {{m.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="onClick()">{{LABEL_BUTTON.SEND}}</button>
 </div>

@@ -10,6 +10,7 @@ import { SharedModule } from './../../shared/shared.module';
 import { PreviewComponent } from './insert-data/preview/preview.component';
 import { FormTeacherComponent } from './insert-data/form-teacher/form-teacher.component';
 import { TimeTableComponent } from './time-table/time-table.component';
+import { ChipsComponent } from './show-items/component/chips/chips.component';
 
 
 
@@ -19,7 +20,8 @@ import { TimeTableComponent } from './time-table/time-table.component';
     ...COMPONENTS,
     PreviewComponent,
     FormTeacherComponent,
-    TimeTableComponent
+    TimeTableComponent,
+    ChipsComponent
   ],
   imports: [
     BrowserModule,

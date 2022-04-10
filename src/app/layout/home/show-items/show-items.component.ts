@@ -1,13 +1,18 @@
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Teacher } from 'src/app/model/teacher';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { HttpService } from 'src/service/http.service';
 import { UtilityService } from 'src/service/utility.service';
+import { MODALSOURCE, ModalConfig } from 'src//assets/config/modal.config'
+import {SelectionModel} from '@angular/cdk/collections';
+import { FormTeacherComponent } from '../insert-data/form-teacher/form-teacher.component';
 
 interface Section{
   prima: string;
@@ -29,26 +34,31 @@ interface Section{
 })
 export class ShowItemsComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<Teacher>;
+  selection = new SelectionModel<Teacher>(true, []);
   dataSource$: BehaviorSubject<MatTableDataSource<Teacher>> = new BehaviorSubject(null)
-  columnsToDisplay = ['id','name', 'surname','in_service','status'];
+  columnsToDisplay = ['select','id','name', 'surname','in_service','status'];
   expandedElement: Teacher | null;
   teacher: Teacher;
   section: Section[] = [];
   temp: any[] = []
+  MODALSOURCE = MODALSOURCE;
+  modalConfig: ModalConfig;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private service: HttpService,private  router: Router, private util: UtilityService) {
-    this.util.showSpinner.next(true)
-    let subscribe = this.service.getTeachers().subscribe(data => {
+  constructor(private service: HttpService,private  router: Router, private util: UtilityService, public dialog: MatDialog) {
+    this.util.showSpinner.next(true)}
+  ngOnInit(): void {
+    this.init()
+  }
+
+  init(){
+    this.service.getTeachers().subscribe(data => {
       this.util.showSpinner.next(false)
-      subscribe?.unsubscribe()
+      //subscribe?.unsubscribe()
       this.dataSource = new MatTableDataSource(data);
       this.dataSource$.next(this.dataSource)
     })
-  }
-  ngOnInit(): void {
-
   }
 
   ngAfterViewInit() {
@@ -60,10 +70,10 @@ export class ShowItemsComponent implements OnInit, AfterViewInit {
     })
   }
 
-  getInfo(expandedElement){
+  getInfo(expandedElement: Teacher){
     if(expandedElement){
       this.service.getTeacher(expandedElement.id).subscribe(teach =>{
-        console.log(teach)
+        this.util.teacher$.next(teach)
           this.teacher = teach;
           let prima: string[] = []
           let seconda: string[] = []
@@ -116,5 +126,57 @@ export class ShowItemsComponent implements OnInit, AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  openDialog(){
+    let teacher: Teacher[] = []
+    teacher.push(this.teacher)
+    this.modalConfig = {
+      source: MODALSOURCE.ADDMATTER,
+      matter: this.teacher.matters,
+      teacher: teacher
+    }
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '250px',
+      data: this.modalConfig,
+    });
+    dialogRef.afterClosed().subscribe(data=>{
+      this.getInfo(teacher[0])
+
+    })
+  }
+
+  removeData(){
+    let removeTeacher: Teacher[] = this.selection.selected
+    this.service.removeTeacher(removeTeacher).subscribe(data =>{
+      console.log(data)
+    })
+
+
+  }
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource?.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.selection.select(...this.dataSource.data);
+  }
+  addData(){
+    let closed = this.dialog.open(FormTeacherComponent,{
+      width: '500px',
+      disableClose: true
+    });
+    closed.beforeClosed().subscribe(data=>{
+      this.init()
+    })
   }
 }

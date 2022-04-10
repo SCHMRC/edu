@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Matter } from 'src/app/model/matter';
 import { environment } from 'src/environments/environment';
 import {Classroom,Week,Teacher,Day,Ora,Year } from './../app/model/index'
 
@@ -13,9 +14,11 @@ export class HttpService {
 
   constructor(private http: HttpClient) {}
 
-  insertTeach(teacher: Teacher): Observable<any>{
-    return this.http.post(`${this.URI}/api/teacher`,teacher)
+
+  removeTeacher(teachers: Teacher[]): Observable<any>{
+    return this.http.post(`${this.URI}/api/teacher/teachers/remove`,teachers)
   }
+
   insertTeachs(teachers: Teacher[]): Observable<any>{
     return this.http.post(`${this.URI}/api/teacher/teachers`, teachers)
   }
@@ -34,12 +37,16 @@ export class HttpService {
 
   insertAllClass(classrom: Classroom[]): Observable<any>{
     return this.http.post(`${this.URI}/api/classroom/list`,classrom);
-
   }
 
   getAllClass(): Observable<any[]> {
     return this.http.get<any[]>(`${this.URI}/api/class`);
+  }
 
+  addMatter(matter: Matter): Observable<any>{
+    return this.http.post(`${this.URI}/api/matter`, matter)
+  }
+  removeMatter(matter: Matter): Observable<any>{
+    return this.http.delete<Matter>(`${this.URI}/api/matter/${matter.teachers[0].id}/${matter.matter}`)
   }
 }
-
