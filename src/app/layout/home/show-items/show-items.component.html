@@ -4,6 +4,20 @@
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
     </mat-form-field>
+    <button
+      style="margin-left: 10px;"
+      mat-raised-button
+      (click)="removeData()"
+      class="demo-button">
+      Remove Teacher/s
+  </button>
+  <button
+      style="margin-left: 10px;"
+      mat-raised-button
+      (click)="addData()"
+      class="demo-button">
+      Add Teacher
+  </button>
   </div>
   <div class="col">
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
@@ -14,6 +28,21 @@
 
 <div class="row">
   <table mat-table class="table-out" [dataSource]="dataSource" multiTemplateDataRows matSort class="mat-elevation-z8" >
+     <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
     <!-- Position Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> id. </th>
@@ -67,26 +96,7 @@
           <div class="row mb-4 p-3" style="background-color: whitesmoke;">
 
             <div class="col-9">
-              <b>Matter:</b>
-              <mat-chip-list>
-                <mat-chip *ngFor="let matter of teacher?.matters">
-                  <mat-chip-avatar [ngSwitch]="matter['matter']">
-                    <img *ngSwitchCase="'ITALIANO'" src="./../../../../assets/icon/it_flag.jpeg" width="140%" />
-                    <img *ngSwitchCase="'INGLESE'" src="./../../../../assets/icon/en_flag.png" width="140%" />
-                    <img *ngSwitchCase="'STORIA'" src="./../../../../assets/icon/his_flag.jpg" width="140%" />
-                    <img *ngSwitchCase="'GEOGRAFIA'" src="./../../../../assets/icon/geo_flag.jpg" width="100%" />
-                    <img *ngSwitchCase="'MATEMATICA'" src="./../../../../assets/icon/mat_flag.png" width="100%" />
-                    <img *ngSwitchCase="'TECNOLOGIA'" src="./../../../../assets/icon/tec_flag.jpg" width="130%" />
-                    <img *ngSwitchCase="'FRANCESE'" src="./../../../../assets/icon/fra_flag.jpg" width="130%" />
-                    <img *ngSwitchCase="'ARTE'" src="./../../../../assets/icon/art_flag.jpg" width="90%" />
-                    <img *ngSwitchCase="'RELIGIONE'" src="./../../../../assets/icon/rel_flag.png" width="140%" />
-                    <img *ngSwitchCase="'EdFISICA'" src="./../../../../assets/icon/edfis_flag.gif" width="120%" />
-                    <img *ngSwitchCase="'MUSICA'" src="./../../../../assets/icon/mus_flag.png" width="100%" />
-                    <img *ngSwitchCase="'APPROFONDIMENTO'" src="./../../../../assets/icon/app_flag.png" width="90%" />
-                  </mat-chip-avatar>
-                  {{matter['matter']}}
-                </mat-chip>
-              </mat-chip-list>
+              <app-chips [teacherIn]="teacher"></app-chips>
               <mat-form-field class="example-full-width" style="margin-right: 10px; margin-top: 20px;"
                 appearance="legacy">
                 <mat-label>Andress:</mat-label>

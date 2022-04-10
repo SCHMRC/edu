@@ -155,8 +155,9 @@ export class InsertDataComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.util.showSpinner.next(true)
+    console.log(this.teacher)
     this.subscription.push(this.http.insertTeachs(this.teacher).subscribe(
-      data => { this.teacher = [], this.files = []; this.openSnackBar(data.message, 'Ok!','snackbar-success'); this.util.showSpinner.next(false) },
+      data => { this.teacher = [], this.files = [];this.openSnackBar(data.message, 'Ok!','snackbar-success'); this.util.showSpinner.next(false) },
       error => { this.openSnackBar(error.error.message, error.status,'snackbar-error'); this.util.showSpinner.next(false) }
     ))
   }

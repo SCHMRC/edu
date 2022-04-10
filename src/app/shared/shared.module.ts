@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ModalComponent } from './modal/modal.component';
 import { MaterialModule } from '../material/material.module';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { FormsModule } from '@angular/forms'
 
 
 
@@ -19,6 +20,7 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
   imports: [
     MaterialModule,
     CommonModule,
+    FormsModule,
     MatSidenavModule
   ],
   exports: [
