@@ -5,6 +5,7 @@
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
     </mat-form-field>
     <button
+      [disabled]="selection.selected.length < 1"
       style="margin-left: 10px;"
       mat-raised-button
       (click)="removeData()"
@@ -32,12 +33,14 @@
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
       <mat-checkbox (change)="$event ? masterToggle() : null"
+                    matTooltip="Select all teacher and remove"
                     [checked]="selection.hasValue() && isAllSelected()"
                     [indeterminate]="selection.hasValue() && !isAllSelected()">
       </mat-checkbox>
     </th>
     <td mat-cell *matCellDef="let row">
       <mat-checkbox (click)="$event.stopPropagation()"
+                    matTooltip="Select teacher and remove"
                     (change)="$event ? selection.toggle(row) : null"
                     [checked]="selection.isSelected(row)">
       </mat-checkbox>

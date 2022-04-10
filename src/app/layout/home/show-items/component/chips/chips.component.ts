@@ -132,7 +132,6 @@ export class ChipsComponent implements OnInit {
       teacher.push(this.teacherIn)
       if(matters){
         let matter = new Matter(matters, teacher)
-        console.log(matter)
         this.httpService.removeMatter(matter).subscribe(data =>{console.log(data)})
       }
     }

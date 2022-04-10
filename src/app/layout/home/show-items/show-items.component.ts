@@ -148,6 +148,8 @@ export class ShowItemsComponent implements OnInit, AfterViewInit {
   removeData(){
     let removeTeacher: Teacher[] = this.selection.selected
     this.service.removeTeacher(removeTeacher).subscribe(data =>{
+      this.init()
+      this.selection.clear();
       console.log(data)
     })
 
