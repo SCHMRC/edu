@@ -15,6 +15,12 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
 
+  getSection(): Observable<string[]>{
+    return this.http.get<string[]>(`${this.URI}/api/classroom`)
+
+  }
+
+
   removeTeacher(teachers: Teacher[]): Observable<any>{
     return this.http.post(`${this.URI}/api/teacher/teachers/remove`,teachers)
   }
@@ -36,11 +42,11 @@ export class HttpService {
   }
 
   insertAllClass(classrom: Classroom[]): Observable<any>{
-    return this.http.post(`${this.URI}/api/classroom/list`,classrom);
+    return this.http.post(`${this.URI}/api/classroom/insert`,classrom);
   }
 
-  getAllClass(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.URI}/api/class`);
+  getAllClass(): Observable<Classroom[]> {
+    return this.http.get<any[]>(`${this.URI}/api/classroom/all`);
   }
 
   addMatter(matter: Matter): Observable<any>{
@@ -48,5 +54,8 @@ export class HttpService {
   }
   removeMatter(matter: Matter): Observable<any>{
     return this.http.delete<Matter>(`${this.URI}/api/matter/${matter.teachers[0].id}/${matter.matter}`)
+  }
+  removeClass(classroom: Classroom): Observable<any>{
+    return this.http.delete<Classroom>(`${this.URI}/api/classroom/${classroom.year}/${classroom.section}`)
   }
 }

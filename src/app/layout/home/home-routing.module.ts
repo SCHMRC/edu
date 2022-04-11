@@ -7,6 +7,7 @@ import { ShowItemsComponent } from './show-items/show-items.component';
 import { ShowClassroomComponent } from './show-classroom/show-classroom.component';
 import { AuthenticationGuard } from 'src/app/authentication/authentication.guard';
 import { TimeTableComponent } from './time-table/time-table.component';
+import { ItemClassComponent } from './show-classroom/item-class/item-class.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path:'show-items', component: ShowItemsComponent, canActivate: [AuthenticationGuard]},
     {path:'show-items/:id',component: ItemsComponent, canActivate: [AuthenticationGuard]},
     {path:'show-class',component: ShowClassroomComponent, canActivate: [AuthenticationGuard]},
+    {path:'show-class/:id',component: ItemClassComponent, canActivate: [AuthenticationGuard]},
     {path:'show-time-table', component: TimeTableComponent, canActivate: [AuthenticationGuard]}
   ]}
 ];

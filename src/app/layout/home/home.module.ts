@@ -11,6 +11,8 @@ import { PreviewComponent } from './insert-data/preview/preview.component';
 import { FormTeacherComponent } from './insert-data/form-teacher/form-teacher.component';
 import { TimeTableComponent } from './time-table/time-table.component';
 import { ChipsComponent } from './show-items/component/chips/chips.component';
+import { ItemClassComponent } from './show-classroom/item-class/item-class.component';
+import { StudentComponentComponent } from './show-classroom/item-class/student-component/student-component.component';
 
 
 
@@ -21,7 +23,9 @@ import { ChipsComponent } from './show-items/component/chips/chips.component';
     PreviewComponent,
     FormTeacherComponent,
     TimeTableComponent,
-    ChipsComponent
+    ChipsComponent,
+    ItemClassComponent,
+    StudentComponentComponent
   ],
   imports: [
     BrowserModule,

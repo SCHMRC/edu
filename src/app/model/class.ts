@@ -1,14 +1,14 @@
+import { Student } from "./student";
 import { Teacher } from "./teacher";
 
 export enum Year {
   PRIMA, SECONDA, TERZA
-
 }
 
 export class Classroom {
-  id?: number;
   year: string;
   section: string;
+  student: Student[];
   teachers: Teacher[];
   /*ita = 6;
   sto = 2;
@@ -24,11 +24,11 @@ export class Classroom {
   app = 1;*/
 
 
-  constructor( _year: string, _section: string,_id?: number,teachers?: Teacher[]) {
-    if(_id){this.id = _id;}
+  constructor( _year: string, _section: string,teachers?: Teacher[], student?: Student[]) {
     this.year = _year;
     this.section = _section;
     if(teachers){this.teachers = teachers}
+    if(student){this.student = student}
   }
 
   /*getIta() {

@@ -1,0 +1,31 @@
+.example-card {
+  max-width: 400px;
+  transition: box-shadow .3s;
+}
+
+.example-card:hover {
+  box-shadow: 0 0 30px rgba(33,33,33,.4);
+}
+
+.example-header-image {
+  background-image: url();
+  background-size: cover;
+}
+
+.example-section {
+  margin: 12px 0;
+}
+
+.example-margin {
+  margin: 0 12px;
+}
+
+.min-width{
+  width: 60px;
+}
+
+.card-style{
+  background-color: whitesmoke;
+  margin-left: 17px;
+  width: 500px;
+}
