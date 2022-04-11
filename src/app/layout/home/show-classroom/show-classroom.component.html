@@ -1,1 +1,111 @@
-<p>show-classroom works!</p>
+<div class="row">
+  <div class="display-4 col">
+    Handle Class
+  </div>
+
+  <div class="col">
+    <div style="margin-left: 76px;">
+      <mat-card class="card-style">
+        <form #form="ngForm" (ngSubmit)="addData(form.value)">
+          <mat-checkbox class="example-margin" [checked]="allComplete" [color]="task.color"
+            [indeterminate]="someComplete()" (change)="setAll($event.checked)">
+            {{task.name}}
+          </mat-checkbox>
+          <div class="example-margin">
+            <span *ngFor="let subtask of task.subtasks" style="margin-right: 10px;">
+              <mat-checkbox [name]="subtask.name" [(ngModel)]="subtask.completed" [color]="subtask.color"
+                (ngModelChange)="updateAllComplete()">
+                {{subtask.name}}
+              </mat-checkbox>
+            </span>
+            <span>
+              <mat-form-field class="min-width" appearance="legacy">
+                <mat-label>Section</mat-label>
+                <input matInput placeholder="Ex. A" [(ngModel)]="section" name="section" pattern="^[A-z]{1}" required
+                  #name="ngModel">
+              </mat-form-field>
+              <button style="margin-left: 10px;" mat-raised-button type="submit" class="demo-button"
+                [disabled]="form.invalid">
+                Add class
+              </button>
+            </span>
+
+          </div>
+
+        </form>
+      </mat-card>
+
+    </div>
+
+
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <div *ngFor="let item of prime ; index as i">
+        <mat-card *ngIf="item.year == 'PRIMA'" class="example-card  m-2" style="background-color: #deedfc;" (mouseenter)="onHover(0,i)" (mouseleave)="onNotHover(0,i)">
+          <mat-card-header class="row">
+            <div class="col">
+              <mat-card-title>{{item.year}} - {{item.section}}</mat-card-title>
+            </div>
+            <div [hidden]="hover[0][i]" class="col" align="end">
+              <button mat-icon-button color="primary" matTooltip="remove class" (click)="remove(item.year,item.section)">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+          </mat-card-content>
+          <mat-card-actions align="start">
+            <button mat-raised-button (click)="handleClass(item.year,item.section)">INFO</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col">
+      <div *ngFor="let item of seconde; index as i">
+        <mat-card *ngIf="item.year == 'SECONDA'" class="example-card  m-2" style="background-color: #f0e0b6;" (mouseenter)="onHover(1,i)" (mouseleave)="onNotHover(1,i)">
+          <mat-card-header class="row">
+            <div class="col">
+              <mat-card-title>{{item.year}} - {{item.section}}</mat-card-title>
+            </div>
+            <div [hidden]="hover[1][i]" class="col" align="end">
+              <button mat-icon-button color="primary" matTooltip="remove class" (click)="remove(item.year,item.section)">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+          </mat-card-content>
+          <mat-card-actions align="start">
+            <button mat-raised-button (click)="handleClass(item.year,item.section)">INFO</button>
+
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </div>
+    <div class="col">
+      <div *ngFor="let item of terze; index as i">
+        <mat-card *ngIf="item.year == 'TERZA'" class="example-card  m-2" style="background-color: #f7b9b9;" (mouseenter)="onHover(2,i)" (mouseleave)="onNotHover(2,i)">
+          <mat-card-header class="row">
+            <div class="col">
+              <mat-card-title>{{item.year}} - {{item.section}}</mat-card-title>
+            </div>
+            <div [hidden]="hover[2][i]" class="col" align="end">
+              <button mat-icon-button color="primary" matTooltip="remove class" (click)="remove(item.year,item.section)">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+          </mat-card-content>
+          <mat-card-actions align="start">
+            <button mat-raised-button (click)="handleClass(item.year,item.section)">INFO</button>
+
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </div>
+
+  </div>

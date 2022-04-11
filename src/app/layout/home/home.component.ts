@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import {trigger, state, style, animate, transition} from '@angular/animations';
 import * as LABEL_MENU from 'src/assets/label/label_menu'
+import {LABEL_TOOLTIP} from 'src/assets/label/label_button'
 
 export interface Path{
   icon: string,
@@ -31,25 +32,25 @@ export class HomeComponent implements OnInit {
   routers: Path[] = [
     {
       icon: 'person_add',
-      description: 'Insert one or more teachers',
+      description: LABEL_TOOLTIP.person_add,
       key: 'Insert teacher',
       value: 'insert'
     },
     {
       icon: 'group',
-      description: 'Show all teachers in DB',
+      description: LABEL_TOOLTIP.group,
       key: 'Show teacher',
       value: 'show-items'
     },
     {
       icon: 'school',
-      description: 'Insert and show class ',
+      description: LABEL_TOOLTIP.school,
       key: 'Insert/show Class',
       value: 'show-class'
     },
     {
       icon: 'functions',
-      description: 'Setting/Generate Time Table',
+      description: LABEL_TOOLTIP.functions,
       key: 'Time Table',
       value: 'show-time-table'
     },
@@ -57,7 +58,9 @@ export class HomeComponent implements OnInit {
 
   reason = '';
 
-  constructor(private router: Router){}
+  constructor(private router: Router){
+
+  }
 
   ngOnInit(): void {
     this.bool.subscribe(flag =>{

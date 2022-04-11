@@ -13,6 +13,8 @@ import { UtilityService } from 'src/service/utility.service';
 import { MODALSOURCE, ModalConfig } from 'src//assets/config/modal.config'
 import {SelectionModel} from '@angular/cdk/collections';
 import { FormTeacherComponent } from '../insert-data/form-teacher/form-teacher.component';
+import * as SNACKBAR from 'src/assets/config/snackBar.config'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Section{
   prima: string;
@@ -40,13 +42,14 @@ export class ShowItemsComponent implements OnInit, AfterViewInit {
   expandedElement: Teacher | null;
   teacher: Teacher;
   section: Section[] = [];
+  section$: string[] = [];
   temp: any[] = []
   MODALSOURCE = MODALSOURCE;
   modalConfig: ModalConfig;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private service: HttpService,private  router: Router, private util: UtilityService, public dialog: MatDialog) {
+  constructor(private service: HttpService,private  router: Router, private util: UtilityService, public dialog: MatDialog,private _snackBar: MatSnackBar) {
     this.util.showSpinner.next(true)}
   ngOnInit(): void {
     this.init()
@@ -86,6 +89,7 @@ export class ShowItemsComponent implements OnInit, AfterViewInit {
             }
 
           });
+
           let max: number;
           if(prima.length > seconda.length && prima.length > terza.length){
             max = prima.length
@@ -111,6 +115,7 @@ export class ShowItemsComponent implements OnInit, AfterViewInit {
             max--
           }
       })
+      this.service.getSection().subscribe(data =>{this.section$ = data})
     }
 
 
@@ -150,10 +155,20 @@ export class ShowItemsComponent implements OnInit, AfterViewInit {
     this.service.removeTeacher(removeTeacher).subscribe(data =>{
       this.init()
       this.selection.clear();
+      this.openSnackBar(data.message, 'Ok!','snackbar-remove-success')
       console.log(data)
     })
 
 
+  }
+
+  openSnackBar(msg: string, error: string, color: string) {
+    this._snackBar.open(msg,`status ${error}`,{
+      duration: SNACKBAR.snackBarConfig.duration,
+      panelClass: [color],
+      horizontalPosition: SNACKBAR.snackBarConfig.horizontalPosition,
+      verticalPosition: SNACKBAR.snackBarConfig.verticalPosition,
+    });
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

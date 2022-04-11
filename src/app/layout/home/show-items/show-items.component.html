@@ -21,7 +21,7 @@
   </button>
   </div>
   <div class="col">
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
   </div>
 </div>
 
@@ -129,16 +129,31 @@
                       <table mat-table [dataSource]="section" class="table-in example-table" matSort
                         matSortActive="created" matSortDisableClear matSortDirection="desc">
                         <ng-container matColumnDef="prima">
-                          <th mat-header-cell *matHeaderCellDef>prima</th>
-                          <td mat-cell *matCellDef="let row"><span>{{row['prima']}}</span></td>
+                          <th mat-header-cell *matHeaderCellDef>
+                            <button mat-button [matMenuTriggerFor]="menu">prima</button>
+                            <mat-menu #menu="matMenu">
+                              <button mat-menu-item *ngFor="let item of section$">{{item}}</button>
+                            </mat-menu>
+                          </th>
+                          <td mat-cell *matCellDef="let row"><span style="margin-left: 30px;">{{row['prima']}}</span></td>
                         </ng-container>
                         <ng-container matColumnDef="seconda">
-                          <th mat-header-cell *matHeaderCellDef>seconda</th>
-                          <td mat-cell *matCellDef="let row"><span>{{row['seconda']}}</span></td>
+                          <th mat-header-cell *matHeaderCellDef>
+                            <button mat-button [matMenuTriggerFor]="menu">seconda</button>
+                            <mat-menu #menu="matMenu">
+                              <button mat-menu-item *ngFor="let item of section$"><p>{{item}}</p></button>
+                            </mat-menu>
+                          </th>
+                          <td mat-cell *matCellDef="let row"><span style="margin-left: 30px;">{{row['seconda']}}</span></td>
                         </ng-container>
                         <ng-container matColumnDef="terza">
-                          <th mat-header-cell *matHeaderCellDef>terza</th>
-                          <td mat-cell *matCellDef="let row"><span>{{row['terza']}}</span></td>
+                          <th mat-header-cell *matHeaderCellDef>
+                            <button mat-button [matMenuTriggerFor]="menu">terza</button>
+                            <mat-menu #menu="matMenu">
+                              <button mat-menu-item *ngFor="let item of section$">{{item}}</button>
+                            </mat-menu>
+                          </th>
+                          <td mat-cell *matCellDef="let row"><span style="margin-left: 30px;">{{row['terza']}}</span></td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="['prima','seconda','terza']"></tr>
                         <tr mat-row *matRowDef="let row; columns: ['prima','seconda','terza'];"></tr>
