@@ -1,2 +1,19 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon>dialpad</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [routerLink]="'handle-teacher'" routerLinkActive="active">
+    <mat-icon>Disable alerts</mat-icon>
+    <span>Redial</span>
+  </button>
+  <button mat-menu-item [routerLink]="'handle-student'" routerLinkActive="active">
+    <mat-icon>voicemail</mat-icon>
+    <span>Check voice mail</span>
+  </button>
+</mat-menu>
+
+
 <button routerLink="/home/show-class">prev</button>
-<app-student-component></app-student-component>
+<router-outlet></router-outlet>
+
+

@@ -11,6 +11,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { HomeModule } from './layout/home/home.module'
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterClassModule } from 'src/app/layout/home/show-classroom/item-class/router-class.module'
 
 
 
@@ -30,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     HomeModule,
     SharedModule,
+    RouterClassModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],
