@@ -17,7 +17,8 @@ const routes: Routes = [
     {path:'show-items', component: ShowItemsComponent, canActivate: [AuthenticationGuard]},
     {path:'show-items/:id',component: ItemsComponent, canActivate: [AuthenticationGuard]},
     {path:'show-class',component: ShowClassroomComponent, canActivate: [AuthenticationGuard]},
-    {path:'show-class/:id',component: ItemClassComponent, canActivate: [AuthenticationGuard]},
+    {path:'show-class/:id', canActivate: [AuthenticationGuard],
+        loadChildren: () => import(`src/app/layout/home/show-classroom/item-class/router-class.module`).then(m => m.RouterClassModule)},
     {path:'show-time-table', component: TimeTableComponent, canActivate: [AuthenticationGuard]}
   ]}
 ];
