@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
       })
     }else{
       this.form = this.fb.group({
-        email: ['',[Validators.email, Validators.required]],
-        password: ['', [Validators.required, Validators.minLength(10)]]
+        email: ['schiavo.marco05@gmail.com',[Validators.email, Validators.required]],
+        password: ['Pa55word', [Validators.required, Validators.minLength(10)]]
       })
     }
 

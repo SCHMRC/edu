@@ -1,15 +1,26 @@
-<section class="example-section" [formGroup]="form">
-  <h4>Select teachers:</h4>
-  <div class="row">
-    <div class="col" *ngFor="let item of teachers$ | async" style="width: 50px;">
-      <mat-checkbox style="margin-right: 10px;">{{item.surname}}</mat-checkbox>
-    </div>
+<mat-card class="mat-elevation-z8">
+  <mat-label class="display-5">Teachers</mat-label>
+  <mat-chip-list>
+    <mat-chip *ngFor="let item of teachers$ | async"
+    matTooltip="
+          nome: {{item.name}} -
+          edumail: {{item.edumail}} -
+          mail: {{item.email}} -
+          indirizzo: {{item.adress}} -
+          tel: {{item.phone}}">
+      <mat-chip-avatar>
+          <img src="./../../../../../../assets/icon/teacher.png" width="130%"/>
+      </mat-chip-avatar>
+      {{item.surname}}
+    </mat-chip>
+  </mat-chip-list>
+</mat-card>
 
-  </div>
 
-</section>
+
 
 <!-- <section class="example-section" [formGroup]="toppings">
   <h4>You chose:</h4>
   {{toppings.value | json}}
 </section> -->
+

@@ -43,6 +43,12 @@ export class HomeComponent implements OnInit {
       value: 'show-items'
     },
     {
+      icon: 'face_5',
+      description: LABEL_TOOLTIP.student,
+      key: 'Insert/show student',
+      value: 'insert-student'
+    },
+    {
       icon: 'school',
       description: LABEL_TOOLTIP.school,
       key: 'Insert/show Class',
