@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as LABEL_ERROR from 'src/assets/label/label_error'
 import * as LABEL_FORM from 'src/assets/label/label_form'
@@ -14,12 +14,12 @@ import { UtilityService } from 'src/service/utility.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
   LABEL_ERROR = LABEL_ERROR
   LABEL_FORM = LABEL_FORM
   LABEL_BUTTON = LABEL_BUTTON
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private util: UtilityService,
     private router: Router,
     private auth : AuthService)

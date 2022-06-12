@@ -1,6 +1,6 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Component, ElementRef, ViewChild, OnInit, Input} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {UntypedFormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable, of} from 'rxjs';
@@ -21,7 +21,7 @@ export class ChipsComponent implements OnInit {
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   placeholder = '...add Matter'
-  mattersCtrl = new FormControl();
+  mattersCtrl = new UntypedFormControl();
   filteredmatterss: Observable<string[]>;
   matterss: string[] = [];
   temp: string[] = []

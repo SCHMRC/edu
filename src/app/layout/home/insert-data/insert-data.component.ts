@@ -5,7 +5,7 @@ import { Matter } from 'src/app/model/matter'
 import { Teacher } from 'src/app/model/teacher';
 import { HttpService } from 'src/service/http.service';
 import { PreviewComponent } from './preview/preview.component';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { FormTeacherComponent } from './form-teacher/form-teacher.component';
 import * as LABEL_BUTTON from 'src/assets/label/label_button'
@@ -25,7 +25,7 @@ export class InsertDataComponent implements OnInit, OnDestroy {
   teacher: Teacher[] = []
   subscription: Subscription[] = [];
   files: File[] = [];
-  formTeacher: FormGroup
+  formTeacher: UntypedFormGroup
   temp: Subscription;
 
   y: Subscription;
@@ -168,7 +168,7 @@ export class InsertDataComponent implements OnInit, OnDestroy {
     });
   }
 
-  handleForm(event: FormGroup) {
+  handleForm(event: UntypedFormGroup) {
     let form = event.value
     if (event.valid) {
       this.formTeacher = event

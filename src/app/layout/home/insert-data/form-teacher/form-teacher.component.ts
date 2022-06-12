@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { LABEL_MATTER, Select } from './../../../../../assets/label/label_matter';
 import { NgModel } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
@@ -19,7 +19,7 @@ import * as SNACKBAR from 'src/assets/config/snackBar.config'
 })
 export class FormTeacherComponent implements OnInit {
   BUTTON = LABEL_BUTTON;
-  form: FormGroup;
+  form: UntypedFormGroup;
   formTeacher: Teacher[] = [];
   LABELMATTER: Select[] = LABEL_MATTER
   matter: BehaviorSubject<string[]> = new BehaviorSubject([]);
@@ -29,7 +29,7 @@ export class FormTeacherComponent implements OnInit {
     private util: UtilityService,
     private http: HttpService,
     private _snackBar: MatSnackBar,
-    private fb: FormBuilder) {
+    private fb: UntypedFormBuilder) {
 
    }
 
@@ -65,7 +65,7 @@ export class FormTeacherComponent implements OnInit {
   addMatter(evento){
     this.tempMatter = [];
     this.tempMatter.push(evento.value);
-    this.form.addControl('matterTemp',new FormControl('', Validators.required))
+    this.form.addControl('matterTemp',new UntypedFormControl('', Validators.required))
     this.form.controls['matterTemp'].setValue(evento.value)
     this.form.controls['matters'].setValue(this.tempMatter)
   }

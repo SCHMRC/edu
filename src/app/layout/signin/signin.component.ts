@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 /**LABEL */
 import * as LABEL_FORM from 'src/assets/label/label_form'
@@ -18,13 +18,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  form: FormGroup
+  form: UntypedFormGroup
   LABEL_FORM = LABEL_FORM
   LABEL_ERROR = LABEL_ERROR
   LABEL_BUTTON = LABEL_BUTTON
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     public dialog: MatDialog,
     private router: Router,
     private signin: AuthService ) { }
