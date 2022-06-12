@@ -75,6 +75,7 @@ export class ShowClassroomComponent implements OnInit {
 
 
   handleClass(year: string, section: string){
+
     this.router.navigate([`${year}_${section}`], {relativeTo: this.route})
   }
 

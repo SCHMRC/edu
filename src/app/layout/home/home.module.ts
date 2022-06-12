@@ -9,6 +9,7 @@ import { MaterialModule } from './../../material/material.module';
 import { SharedModule } from './../../shared/shared.module';
 import { PreviewComponent } from './insert-data/preview/preview.component';
 import { FormTeacherComponent } from './insert-data/form-teacher/form-teacher.component';
+import { FormStudentComponent } from './insert-student/form-student/form-student.component';
 import { TimeTableComponent } from './time-table/time-table.component';
 import { ChipsComponent } from './show-items/component/chips/chips.component';
 import { ItemClassComponent } from './show-classroom/item-class/item-class.component';
@@ -21,6 +22,7 @@ import { ItemClassComponent } from './show-classroom/item-class/item-class.compo
     ...COMPONENTS,
     PreviewComponent,
     FormTeacherComponent,
+    FormStudentComponent,
     TimeTableComponent,
     ChipsComponent,
     ItemClassComponent

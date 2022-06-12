@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/service/http.service';
 import { Teacher } from 'src/app/model/index'
@@ -13,10 +14,12 @@ export class HandleClassTeacherComponent implements OnInit {
   teachers$: Observable<Teacher[]>;
   form: FormGroup;
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private activateRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.teachers$ = this.http.getTeachers()
+    let id_class = this.activateRoute.snapshot.params['id'] as string
+    this.teachers$ = this.http.getTeachersFromClass(id_class)
+
 
   }
 

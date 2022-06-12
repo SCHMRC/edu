@@ -15,6 +15,14 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
 
+  getTeachersFromClass(id_class): Observable<Teacher[]>{
+    console.log(`${this.URI}/api/classroom/?id=${id_class}`)
+    return this.http.get<any[]>(`${this.URI}/api/classroom/${id_class}`)
+    }
+
+
+
+
   getSection(): Observable<string[]>{
     return this.http.get<string[]>(`${this.URI}/api/classroom`)
 

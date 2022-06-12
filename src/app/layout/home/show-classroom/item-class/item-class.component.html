@@ -1,19 +1,34 @@
-<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-  <mat-icon>dialpad</mat-icon>
-</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item [routerLink]="'handle-teacher'" routerLinkActive="active">
-    <mat-icon>Disable alerts</mat-icon>
-    <span>Redial</span>
+<div class="row mb-4">
+  <div class="col-6 ml-3">
+    <button mat-mini-fab routerLink="/home/show-class">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
+
+<div class="col-6" align="end">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>dialpad</mat-icon>
   </button>
-  <button mat-menu-item [routerLink]="'handle-student'" routerLinkActive="active">
-    <mat-icon>voicemail</mat-icon>
-    <span>Check voice mail</span>
-  </button>
-</mat-menu>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="'handle-teacher'" routerLinkActive="active">
+      <mat-icon>Disable alerts</mat-icon>
+      <span>Redial</span>
+    </button>
+    <button mat-menu-item [routerLink]="'handle-student'" routerLinkActive="active">
+      <mat-icon>voicemail</mat-icon>
+      <span>Check voice mail</span>
+    </button>
+  </mat-menu>
+</div>
 
 
-<button routerLink="/home/show-class">prev</button>
-<router-outlet></router-outlet>
+</div>
+
+
+
+
+<app-handle-class-teacher></app-handle-class-teacher>
+
+<app-student-component></app-student-component>
 
 
