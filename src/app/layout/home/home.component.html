@@ -13,7 +13,7 @@
     </mat-list-option>
 
     <mat-list-option *ngFor="let router of routers" [value]="router.value" (click)="navigateto(router.value)" style="padding-left: 0px;">
-        <mat-icon matTooltip="{{router.description}}" style="font-size: 30px;" matListIcon>{{router.icon}}</mat-icon>
+        <mat-icon matTooltipPosition="right" matTooltip="{{router.description}}" style="font-size: 30px;" matListIcon>{{router.icon}}</mat-icon>
         <div  mat-line *ngIf="temp.getValue()>6" >{{router.key}}</div>
     </mat-list-option>
   </mat-selection-list>

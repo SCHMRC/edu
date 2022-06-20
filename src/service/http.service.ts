@@ -1,3 +1,4 @@
+import { Student } from './../app/model/student';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -13,6 +14,14 @@ export class HttpService {
   URI = environment.apiURI
 
   constructor(private http: HttpClient) {}
+
+  getStudents(): Observable<Student[]>{
+    return this.http.get<Student[]>(`${this.URI}/api/student`)
+  }
+
+  insertStudent(student: Student): Observable<any>{
+    return this.http.post(`${this.URI}/api/student`,student)
+  }
 
 
   getTeachersFromClass(id_class): Observable<Teacher[]>{

@@ -16,6 +16,7 @@ export class InsertStudentComponent implements OnInit {
 
   addStudent(): void{
     const dialogRef = this.dialog.open(FormStudentComponent, {
+      disableClose: true,
       width: '500px',
       data: {},
     });

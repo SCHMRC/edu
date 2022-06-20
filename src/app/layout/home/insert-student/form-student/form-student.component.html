@@ -8,3 +8,88 @@
     </button>
   </div>
 </div>
+<div class="row">
+  <div mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onclick()">
+
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input type="text" matInput formControlName="name" placeholder="" name="name">
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Cognome</mat-label>
+            <input type="text" matInput formControlName="surname" placeholder="" name="surname">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-5 box">
+          <mat-label style="margin-right: 5px;">Genere</mat-label>
+          <mat-radio-group formControlName="gender" required>
+            <mat-radio-button value="M">M</mat-radio-button>
+            <mat-radio-button value="F">F</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="col-5">
+          <mat-form-field appearance="fill">
+            <mat-label>Comportamento</mat-label>
+            <mat-select formControlName="behavior" name="food">
+              <mat-option *ngFor="let item of behavior" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="col-5">
+            <mat-form-field appearance="fill">
+              <mat-label>Altezza</mat-label>
+              <mat-select formControlName="height" name="height">
+                <mat-option *ngFor="let item of height" [value]="item">
+                  {{item}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="col-5">
+            <mat-form-field appearance="fill">
+              <mat-label>Classe</mat-label>
+              <mat-select formControlName="course" name="course">
+                <mat-option *ngFor="let item of classe | async" [value]="item.year + '-' + item.section">
+                  {{item.year}}  {{item.section}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Bes</mat-label>
+            <mat-select formControlName="bes" name="bes">
+              <mat-option *ngFor="let item of bes" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-6" align="end" style="margin-top: 25px;">
+          <button type="reset" mat-raised-button style="margin-right: 10px;">Clear</button>
+          <button mat-raised-button color="primary" [disabled]="form.invalid">Done</button>
+        </div>
+      </div>
+
+
+
+    </form>
+  </div>
+</div>

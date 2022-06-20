@@ -1,3 +1,4 @@
+import { Student } from './../app/model/student';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,6 +17,19 @@ export class UtilityService {
 
 
   constructor() { }
+
+  factoryStudent(obj: any): Student{
+    let student: Student = {
+      name: obj['name'],
+      surname: obj['surname'],
+      behavior: obj['behavior'],
+      gender: obj['gender'],
+      height: obj['height'],
+      course: obj['course'],
+      bes: obj['bes'],
+    };
+    return student
+  }
 
 
 }

@@ -1,7 +1,7 @@
 import { Classroom } from "./class";
 
 export interface Student{
-  id: number;
+  id?: number;
   name: string;
   surname: string;
   bes: boolean;
@@ -9,5 +9,4 @@ export interface Student{
   height: string;
   behavior: string;
   course: string;
-  classroom: Classroom;
 }
